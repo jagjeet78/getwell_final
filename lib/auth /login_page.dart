@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwell_final/auth%20/otp_page.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import '/services/signinotp.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final Authservices _authservices = Authservices();
+  final TextEditingController _phonenumber = TextEditingController();
+  final _formKey1 = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -28,76 +37,87 @@ class LoginPage extends StatelessWidget {
                 ),
 
                 // here the pending task is adding the phone number input and the submit button with the animation and all
-                Form(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        width: screenWidth * 0.8,
-                        child: IntlPhoneField(
-                          initialCountryCode: 'IN',
-                          decoration: InputDecoration(
-                            labelText: "Phone Number",
-                            labelStyle: const TextStyle(color: Colors.grey),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Colors.blue,
-                                width: 2,
-                              ), // normal border
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                color: Colors.green,
-                                width: 2,
-                              ), // when focused
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                Padding(
+                  padding: EdgeInsetsGeometry.only(left: 40, right: 20),
+                  child: Form(
+                    key: _formKey1,
+
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: screenWidth * 0.8,
+                          child: InternationalPhoneNumberInput(
+                            onInputChanged: (PhoneNumber number) {
+                              print(number.phoneNumber);
+                            },
+                            textFieldController: _phonenumber,
+                            countries: ['IN'],
+                            validator: (PhoneNumber) {
+                              if (PhoneNumber == null || PhoneNumber.isEmpty) {
+                                return "Enter your Phone Number";
+                              }
+                               else if(!RegExp(r'^[0-9]{10}$').hasMatch(PhoneNumber)){
+                                return "Enter a valid 10-digit number";
+                              } else
+                                null;
+                            },
                           ),
-                          keyboardType: TextInputType.phone,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
 
+                const SizedBox(height: 50),
+                // code for the button part
+                SizedBox(
+                  height: screenHeight * 0.05,
+                  width: screenWidth * 0.3,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      backgroundColor: Colors.blue,
+                    ),
 
-
-  const SizedBox(height: 50,),
-// code for the button part 
-    SizedBox(
-      height: screenHeight*0.05,
-      width: screenWidth*0.3,
-   child:  ElevatedButton(
-    style: ElevatedButton.styleFrom(
-      shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-      ),
-            backgroundColor: Colors.blue
-
-    ),
-    
-    
-    
-    onPressed: (){
-    Get.toNamed('/otp');
-
-   }, child: const Text('login')),
-
-    )
+                    onPressed: ()async {
+                      if(_formKey1.currentState!.validate()){
+                  
+                    
 
 
 
 
+    // 1. Create a variable for the full phone number
+    // I've corrected ${_phonenumber}.text to ${_phonenumber.text}
+    String fullPhoneNumber = "+91${_phonenumber.text}";
+
+    // 2. Call your sign-in service with the number
+     final value =await _authservices.signinwithotp(fullPhoneNumber);
+
+if(value){
+    Get.toNamed('/otp', arguments: fullPhoneNumber);}
+    else{
+      Get.snackbar("otp not sent", 'our system having the problems please try after some time');
+    }
+  }
 
 
 
 
+                    
+               
+                      
+             
 
-
-
-
-
-
+  
+                      
+                  
+                    },
+                    child: const Text('login'),
+                  ),
+                ),
               ],
             ),
           ),
