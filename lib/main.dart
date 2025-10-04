@@ -3,7 +3,15 @@ import 'package:getwell_final/Routes/routes.dart';
 import '/Routes/app_routes.dart';
 import 'package:get/get.dart';
 import 'package:getwell_final/Routes/app_routes.dart';
-void main() {
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
+   await Supabase.initialize(
+    url: dotenv.env['SUPABASE_URL']!,      // Use the URL from .env
+    anonKey: dotenv.env['SUPABASE_ANON_KEY']!, // Use the key from .env
+  );
+  
   runApp(const MyApp());
 }
 
