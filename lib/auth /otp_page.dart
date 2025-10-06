@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
+import 'package:getwell_final/auth%20/otp_page_controller.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '/services/signinotp.dart'; // Make sure this import path is correct
 
 class OtpPage extends StatefulWidget {
   final String PhoneNumber;
+
 
   const OtpPage({super.key, required this.PhoneNumber});
 
@@ -16,10 +19,16 @@ class OtpPage extends StatefulWidget {
 class _OtpPageState extends State<OtpPage> {
   // --- All your variables and methods go here ---
   final Authservices _authservices = Authservices();
-  String _otpValue = ""; // Initialized to an empty string to prevent errors
+
+  final OtpPageController _otpPageController = Get.put(OtpPageController());
+
+  String _otpValue = ""; 
+  // Initialized to an empty string to prevent errors
 
   @override
   Widget build(BuildContext context) {
+
+
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -35,9 +44,59 @@ class _OtpPageState extends State<OtpPage> {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
           ),
-          SizedBox(height: screenHeight * 0.1),
+
+
+
+          Obx(
+            (){
+            if(_otpPageController.seconds.value!=0){
+              return Padding(
+              padding: const EdgeInsets.all(3),
+              child: Text(
+                "your otp expires in the 00:${_otpPageController.seconds.value} seconds",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              );
+            }
+            else if(_otpPageController.resetotpcount<3){
+
+              return TextButton(onPressed: 
+              (){
+               
+                _otpPageController.restartTimer();
+                _authservices.signinwithotp(widget.PhoneNumber);
+                
+                
+              }, child: Text('Resend Otp'),);
+
+
+
+            }
+            else{
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+_otpPageController.popout(5);
+});
+
+
+              return Padding(padding: EdgeInsets.all(4),
+              child: Text("PLease Try again Later",
+              textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,
+                color: Colors.red,
+                ),
+                
+              ));
+              
+
+            }}
+            
+          ),
+SizedBox(height: screenHeight * 0.1),
           OtpTextField(
             numberOfFields: 6,
+            fieldWidth: 50,
+            keyboardType: TextInputType.number,
             borderColor: Colors.blue,
             showFieldAsBox: true,
             onSubmit: (String verificationCode) {
@@ -57,12 +116,15 @@ class _OtpPageState extends State<OtpPage> {
               ),
               onPressed: () async {
                 if (_otpValue.length == 6) {
-            
-                   final  otpcheck=  await _authservices.verifyotp(widget.PhoneNumber, _otpValue);
-
+                  final otpcheck = await _authservices.verifyotp(
+                    widget.PhoneNumber,
+                    _otpValue,
+                  );
 
                   if (otpcheck) {
-                    Get.offAllNamed('/home'); // Use offAllNamed to prevent going back
+                    Get.offAllNamed(
+                      '/home',
+                    ); // Use offAllNamed to prevent going back
                   } else {
                     Get.snackbar(
                       "Incorrect OTP",

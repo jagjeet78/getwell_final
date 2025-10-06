@@ -46,9 +46,12 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         SizedBox(
                           width: screenWidth * 0.8,
+                          
                           child: InternationalPhoneNumberInput(
+                            keyboardType:TextInputType.number,
                             onInputChanged: (PhoneNumber number) {
                               print(number.phoneNumber);
+
                             },
                             textFieldController: _phonenumber,
                             countries: ['IN'],
@@ -56,7 +59,8 @@ class _LoginPageState extends State<LoginPage> {
                               if (PhoneNumber == null || PhoneNumber.isEmpty) {
                                 return "Enter your Phone Number";
                               }
-                               else if(!RegExp(r'^[0-9]{10}$').hasMatch(PhoneNumber)){
+
+                               else if(!RegExp(r'^[0-9]{10}$').hasMatch(PhoneNumber.replaceAll(RegExp(r'\D'), ''))){
                                 return "Enter a valid 10-digit number";
                               } else
                                 null;
