@@ -5,17 +5,18 @@ import 'package:getwell_final/componets/slider.dart';
 import 'package:getwell_final/pages/question_page_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../componets/ProgressBarSlider.dart';
 
 class QuestionsPage extends StatelessWidget {
   const QuestionsPage({super.key});
-  
 
   // This private helper method builds a single gender selection box,
-  
 
   @override
   Widget build(BuildContext context) {
-    final QuestionPageController controller = Get.put(QuestionPageController());
+    final QuestionPageController questionController = Get.put(
+      QuestionPageController(),
+    );
 
     return SafeArea(
       child: Scaffold(
@@ -38,28 +39,13 @@ class QuestionsPage extends StatelessWidget {
                   ],
                 ),
               ),
-
-               
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+              SizedBox(height: Get.height * 0.02),
+              Obx(
+                () => ProgressBarSlider(
+                  progress: questionController.progress.value.toDouble() / 2.0,
+                  divisions: 3,
+                ),
+              ),
 
               SizedBox(height: Get.height * 0.25),
               Padding(
@@ -74,11 +60,14 @@ class QuestionsPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+
                     SizedBox(height: Get.height * 0.04),
-                    const TextField(
-                      decoration: InputDecoration(
+                    TextField(
+                      onChanged: (value) =>
+                          questionController.updateFullName(value),
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                      labelText: "Full Name",
+                        labelText: "Full Name",
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -96,7 +85,9 @@ class QuestionsPage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                controller.sliderval.value.toInt().toString(),
+                                questionController.sliderval.value
+                                    .toInt()
+                                    .toString(),
                                 style: GoogleFonts.manrope(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -109,47 +100,41 @@ class QuestionsPage extends StatelessWidget {
                             activeColor: Color(0xFFe0f2fe),
                             thumbColor: Color(0xFf0d80f2),
                             inactiveColor: Color(0xFFe0f2fe),
-                            value: controller.sliderval.value,
+                            value: questionController.sliderval.value,
                             min: 1,
                             max: 150,
                             divisions: 150,
                             onChanged: (value) {
-                              controller.updateSliderValue(value);
+                              questionController.updateSliderValue(value);
                             },
                           ),
                         ],
                       ),
                     ),
 
-
-                    Row(
-                    children: [
-                      Text("Gender :"),
-                    ],
-                    ),
+                    Row(children: [Text("Gender :")]),
                     SizedBox(height: Get.height * 0.02),
                     Obx(
                       () => Row(
-                       
                         children: [
                           // Calling the helper method for each gender
                           _buildGenderSelectionBox(
-                            controller: controller,
+                            controller: questionController,
                             label: "Male",
                             icon: Icons.male,
                             genderValue: "male",
                           ),
 
-                          SizedBox(width: Get.width*0.03,),
+                          SizedBox(width: Get.width * 0.03),
                           _buildGenderSelectionBox(
-                            controller: controller,
+                            controller: questionController,
                             label: "Female",
                             icon: Icons.female,
                             genderValue: "female",
                           ),
-                           SizedBox(width: Get.width*0.03,),
+                          SizedBox(width: Get.width * 0.03),
                           _buildGenderSelectionBox(
-                            controller: controller,
+                            controller: questionController,
                             label: "Other",
                             icon: Icons.transgender,
                             genderValue: "other",
@@ -196,8 +181,6 @@ class QuestionsPage extends StatelessWidget {
       ),
     );
   }
-
-
 
   // making the main build method much cleaner.
   Widget _buildGenderSelectionBox({
@@ -254,4 +237,3 @@ class QuestionsPage extends StatelessWidget {
     );
   }
 }
-
