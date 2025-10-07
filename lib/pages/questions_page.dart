@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getwell_final/Routes/app_routes.dart';
+import 'package:getwell_final/componets/slider.dart';
 import 'package:getwell_final/pages/question_page_controller.dart';
-// import 'package:getwell_final/themes/app_fonts.dart'; // Assuming this is your font file
 import 'package:google_fonts/google_fonts.dart';
 
-// No need for a StatefulWidget anymore, GetX handles the state.
+
 class QuestionsPage extends StatelessWidget {
   const QuestionsPage({super.key});
+  
+
+  // This private helper method builds a single gender selection box,
+  
 
   @override
   Widget build(BuildContext context) {
-    // Initialize your controller. Get.put() creates a new instance.
     final QuestionPageController controller = Get.put(QuestionPageController());
 
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          // Added to prevent overflow on small screens
           child: Column(
             children: [
-              ///  CODR FOR THE UPPER WELCOME TEXT HERE
               Padding(
                 padding: EdgeInsets.only(top: Get.height * 0.01),
                 child: Row(
@@ -37,9 +39,29 @@ class QuestionsPage extends StatelessWidget {
                 ),
               ),
 
-              // CODE FOR THE IMAGE SHOWN HERE TO BE THE LIKE DYNAMIC
-              SizedBox(height: Get.height * 0.3), // Adjusted height slightly
+               
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              SizedBox(height: Get.height * 0.25),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
@@ -52,24 +74,17 @@ class QuestionsPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     SizedBox(height: Get.height * 0.04),
-
                     const TextField(
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: "Full Name",
+                      labelText: "Full Name",
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ), // Using fixed height is often better
-                    // --- KEY CHANGE AREA ---
-                    // Obx will automatically rebuild its children when sliderval changes.
+                    const SizedBox(height: 10),
                     Obx(
                       () => Column(
                         children: [
-                          // This row now shows the reactive value of the age
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -80,8 +95,6 @@ class QuestionsPage extends StatelessWidget {
                                   style: GoogleFonts.manrope(fontSize: 16),
                                 ),
                               ),
-                              // 1. Display the slider's value.
-                              //    .toInt() converts the double (e.g., 25.0) to an integer (25).
                               Text(
                                 controller.sliderval.value.toInt().toString(),
                                 style: GoogleFonts.manrope(
@@ -92,19 +105,14 @@ class QuestionsPage extends StatelessWidget {
                             ],
                           ),
                           const SizedBox(height: 10),
-
-                          // This is the code for the slider
                           Slider(
                             activeColor: Color(0xFFe0f2fe),
                             thumbColor: Color(0xFf0d80f2),
                             inactiveColor: Color(0xFFe0f2fe),
-
-                            // 2. Set the slider's properties
                             value: controller.sliderval.value,
-                            min: 1, // Set a minimum age
-                            max: 150, // Set a maximum agex
-                            divisions: 150, // Creates steps for each year
-                            // 3. When the slider is moved, call the controller's method
+                            min: 1,
+                            max: 150,
+                            divisions: 150,
                             onChanged: (value) {
                               controller.updateSliderValue(value);
                             },
@@ -113,53 +121,72 @@ class QuestionsPage extends StatelessWidget {
                       ),
                     ),
 
+
+                    Row(
+                    children: [
+                      Text("Gender :"),
+                    ],
+                    ),
                     SizedBox(height: Get.height * 0.02),
+                    Obx(
+                      () => Row(
+                       
+                        children: [
+                          // Calling the helper method for each gender
+                          _buildGenderSelectionBox(
+                            controller: controller,
+                            label: "Male",
+                            icon: Icons.male,
+                            genderValue: "male",
+                          ),
 
-                    Row(),
-
-
-
-
-
-
-
-                    // bottom rows of the buttons of the skip and the next button and the all things here 
-
-                  
-                    
+                          SizedBox(width: Get.width*0.03,),
+                          _buildGenderSelectionBox(
+                            controller: controller,
+                            label: "Female",
+                            icon: Icons.female,
+                            genderValue: "female",
+                          ),
+                           SizedBox(width: Get.width*0.03,),
+                          _buildGenderSelectionBox(
+                            controller: controller,
+                            label: "Other",
+                            icon: Icons.transgender,
+                            genderValue: "other",
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
-
-
                 ),
               ),
             ],
           ),
         ),
-
-
-          bottomNavigationBar: Padding(
+        bottomNavigationBar: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Using TextButton for a less prominent "skip" action
               TextButton(
                 onPressed: () {
-                  // Handle skip logic
+                  Get.toNamed(AppRoutes.homepage);
                 },
-                child: const Text(
-                  'Skip',
-                  style: TextStyle(fontSize: 16),
-                ),
+                child: const Text('Skip', style: TextStyle(fontSize: 16)),
               ),
-              // Using ElevatedButton for the primary "next" action
               ElevatedButton(
                 onPressed: () {
                   // Handle next logic
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                  textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 32,
+                    vertical: 12,
+                  ),
+                  textStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 child: const Text("Next"),
               ),
@@ -169,4 +196,62 @@ class QuestionsPage extends StatelessWidget {
       ),
     );
   }
+
+
+
+  // making the main build method much cleaner.
+  Widget _buildGenderSelectionBox({
+    required QuestionPageController controller,
+    required String label,
+    required IconData icon,
+    required String genderValue,
+  }) {
+    final bool isSelected = controller.isGenderSelected(genderValue);
+
+    // Define colors based on selection state
+    final Color activeColor = Color(0xFF0d80f2);
+    final Color inactiveColor = Color(0xFF0d80f2).withOpacity(0.6);
+    final Color activeBorderColor = Color(0xFF4d91f2);
+    final Color inactiveBorderColor = Color(0xFF4d91f2).withOpacity(0.7);
+    final Color activeBgColor = Color(0xFFe0f2fe);
+    final Color inactiveBgColor = Color(0xFFe0f2fe).withOpacity(0.7);
+
+    return GestureDetector(
+      // The whole container is now tappable and calls the correct method.
+      onTap: () => controller.toggleGender(genderValue),
+      child: Container(
+        height: Get.height * 0.12,
+        width: Get.width * 0.22,
+        decoration: BoxDecoration(
+          color: isSelected ? activeBgColor : inactiveBgColor,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isSelected ? activeBorderColor : inactiveBorderColor,
+            width: isSelected ? 3 : 2,
+            style: BorderStyle.solid,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 49.0,
+              color: isSelected ? activeColor : inactiveColor,
+            ),
+            SizedBox(height: 5),
+            Text(
+              label,
+              style: GoogleFonts.manrope(
+                color: isSelected ? activeColor : inactiveColor,
+                fontSize: 12,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
+
