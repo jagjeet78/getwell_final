@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:getwell_final/Routes/app_routes.dart';
-import 'package:getwell_final/auth%20/otp_page_controller.dart';
+import 'package:getwell_go/Routes/app_routes.dart';
+import 'package:getwell_go/auth%20/otp_page_controller.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '/services/signinotp.dart'; // Make sure this import path is correct
@@ -25,7 +25,7 @@ class _OtpPageState extends State<OtpPage> {
 
   String _otpValue = "";
   // Initialized to an empty string to prevent errors
-  bool pressing=false;
+  bool pressing = false;
 
   @override
   Widget build(BuildContext context) {
@@ -106,56 +106,26 @@ class _OtpPageState extends State<OtpPage> {
               ),
               onPressed: () async {
                 if (_otpValue.length == 6) {
-
-
-                 setState(() {
-                   pressing=true;
-                 });
-
-
-
-
-
-
-
-
-
+                  setState(() {
+                    pressing = true;
+                  });
 
                   final AuthResponse = await _authservices.verifyOtp(
                     widget.PhoneNumber,
                     _otpValue,
                   );
 
-                  if (AuthResponse!=null) {
-                   if (await _authservices.checkUserDataExists(AuthResponse.user!.id)) {
-   Get.toNamed(AppRoutes.homepage);
-} else {
-   Get.toNamed(AppRoutes.questionpage);
-}
-                     
-
-
-                    
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                   
+                  if (AuthResponse != null) {
+                    if (await _authservices.checkUserDataExists(
+                      AuthResponse.user!.id,
+                    )) {
+                      Get.toNamed(AppRoutes.homepage);
+                    } else {
+                      Get.toNamed(AppRoutes.questionpage);
+                    }
                   } else {
                     setState(() {
-                      pressing=false;
+                      pressing = false;
                     });
                     Get.snackbar(
                       "Incorrect OTP",
@@ -173,7 +143,9 @@ class _OtpPageState extends State<OtpPage> {
                   );
                 }
               },
-              child:pressing?CircularProgressIndicator() :const Text('Verify'),
+              child: pressing
+                  ? CircularProgressIndicator()
+                  : const Text('Verify'),
             ),
           ),
         ],

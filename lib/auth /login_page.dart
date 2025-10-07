@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwell_final/auth%20/otp_page.dart';
+import 'package:getwell_go/auth%20/otp_page.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '/services/signinotp.dart';
 
@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _phonenumber = TextEditingController();
   final _formKey1 = GlobalKey<FormState>();
 
-  bool pressed=false;
+  bool pressed = false;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -48,21 +48,20 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         SizedBox(
                           width: screenWidth * 0.8,
-                          
+
                           child: InternationalPhoneNumberInput(
-                            keyboardType:TextInputType.number,
+                            keyboardType: TextInputType.number,
                             onInputChanged: (PhoneNumber number) {
                               print(number.phoneNumber);
-
                             },
                             textFieldController: _phonenumber,
                             countries: ['IN'],
                             validator: (PhoneNumber) {
                               if (PhoneNumber == null || PhoneNumber.isEmpty) {
                                 return "Enter your Phone Number";
-                              }
-
-                               else if(!RegExp(r'^[0-9]{10}$').hasMatch(PhoneNumber.replaceAll(RegExp(r'\D'), ''))){
+                              } else if (!RegExp(r'^[0-9]{10}$').hasMatch(
+                                PhoneNumber.replaceAll(RegExp(r'\D'), ''),
+                              )) {
                                 return "Enter a valid 10-digit number";
                               } else
                                 null;
@@ -87,48 +86,34 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: Colors.blue,
                     ),
 
-                    onPressed: ()async {
+                    onPressed: () async {
+                      if (_formKey1.currentState!.validate()) {
+                        setState(() {
+                          pressed = true;
+                        });
 
+                        // 1. Create a variable for the full phone number
+                        // I've corrected ${_phonenumber}.text to ${_phonenumber.text}
+                        String fullPhoneNumber = "+91${_phonenumber.text}";
 
+                        // 2. Call your sign-in service with the number
+                        final value = await _authservices.signinwithotp(
+                          fullPhoneNumber,
+                        );
 
-
-                      if(_formKey1.currentState!.validate()){
-                  
-                      setState(() {
-                        
-                        pressed=true;
-                      });
-
-
-
-
-    // 1. Create a variable for the full phone number
-    // I've corrected ${_phonenumber}.text to ${_phonenumber.text}
-    String fullPhoneNumber = "+91${_phonenumber.text}";
-
-    // 2. Call your sign-in service with the number
-     final value =await _authservices.signinwithotp(fullPhoneNumber);
-
-if(value){
-    Get.toNamed('/otp', arguments: fullPhoneNumber);}
-    else{
-      Get.snackbar("otp not sent", 'our system having the problems please try after some time');
-    }
-  }
-
-
-
-
-                    
-               
-                      
-             
-
-  
-                      
-                  
+                        if (value) {
+                          Get.toNamed('/otp', arguments: fullPhoneNumber);
+                        } else {
+                          Get.snackbar(
+                            "otp not sent",
+                            'our system having the problems please try after some time',
+                          );
+                        }
+                      }
                     },
-                    child: pressed? CircularProgressIndicator():Text('login'),
+                    child: pressed
+                        ? CircularProgressIndicator()
+                        : Text('login'),
                   ),
                 ),
               ],

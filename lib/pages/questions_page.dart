@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwell_final/Routes/app_routes.dart';
-import 'package:getwell_final/componets/slider.dart';
-import 'package:getwell_final/pages/question_page_controller.dart';
+import 'package:getwell_go/Routes/app_routes.dart';
+import 'package:getwell_go/componets/slider.dart';
+import 'package:getwell_go/pages/question_page_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../componets/ProgressBarSlider.dart';
@@ -19,7 +19,7 @@ class QuestionsPage extends StatelessWidget {
       QuestionPageController(),
     );
 
-    final SendData _senddata =SendData();
+    final SendData _senddata = SendData();
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -68,16 +68,22 @@ class QuestionsPage extends StatelessWidget {
                     TextField(
                       onChanged: (value) =>
                           questionController.updateFullName(value),
-keyboardType: TextInputType.name,
-                          
+                      keyboardType: TextInputType.name,
+
                       decoration: const InputDecoration(
-            enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.grey, width: 1.0),
-    ),
-    // Border when the TextField is focused (being filled)
-    focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.blue, width: 2.0),
-    ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey,
+                            width: 1.0,
+                          ),
+                        ),
+                        // Border when the TextField is focused (being filled)
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.blue,
+                            width: 2.0,
+                          ),
+                        ),
                         labelText: "Full Name",
                       ),
                     ),
@@ -171,18 +177,14 @@ keyboardType: TextInputType.name,
                 child: const Text('Skip', style: TextStyle(fontSize: 16)),
               ),
               ElevatedButton(
-      
-             onPressed: () async {
-    
-  await _senddata.insertUserProfile(
- fullName : questionController.fullName.value.toString(),
-  gender: questionController.gender.value.toString(),
-  age: questionController.sliderval.value.toInt(),
-);
-             
-                  
-                   Get.toNamed(AppRoutes.homepage);
-                 
+                onPressed: () async {
+                  await _senddata.insertUserProfile(
+                    fullName: questionController.fullName.value.toString(),
+                    gender: questionController.gender.value.toString(),
+                    age: questionController.sliderval.value.toInt(),
+                  );
+
+                  Get.toNamed(AppRoutes.homepage);
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(

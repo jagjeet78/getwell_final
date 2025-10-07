@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:getwell_final/Routes/app_routes.dart';
+import 'package:getwell_go/Routes/app_routes.dart';
 import 'dart:async';
- 
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Authservices {
@@ -26,7 +26,9 @@ class Authservices {
         token: otp,
         type: OtpType.sms,
       );
-     print('✅ Whole Supabase Response:\n  Session: ${response.session?.toJson()}\n  User: ${response.user?.toJson()}');
+      print(
+        '✅ Whole Supabase Response:\n  Session: ${response.session?.toJson()}\n  User: ${response.user?.toJson()}',
+      );
       return response;
     } catch (error) {
       print("❌ Error verifying OTP: $error");
@@ -53,6 +55,4 @@ class Authservices {
       return false;
     }
   }
-
- 
 }
