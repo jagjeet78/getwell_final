@@ -6,6 +6,7 @@ import 'package:getwell_final/pages/question_page_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../componets/ProgressBarSlider.dart';
+import '/services/questionpage_services.dart';
 
 class QuestionsPage extends StatelessWidget {
   const QuestionsPage({super.key});
@@ -18,6 +19,7 @@ class QuestionsPage extends StatelessWidget {
       QuestionPageController(),
     );
 
+    final SendData _senddata =SendData();
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -169,7 +171,16 @@ keyboardType: TextInputType.name,
                 child: const Text('Skip', style: TextStyle(fontSize: 16)),
               ),
               ElevatedButton(
-                onPressed: () {
+      
+             onPressed: () async {
+    
+  await _senddata.insertUserProfile(
+ fullName : questionController.fullName.value.toString(),
+  gender: questionController.gender.value.toString(),
+  age: questionController.sliderval.value.toInt(),
+);
+             
+                  
                    Get.toNamed(AppRoutes.homepage);
                  
                 },

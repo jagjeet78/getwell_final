@@ -41,13 +41,13 @@ class Authservices {
       final response = await _supabaseClient
           .from('profiles')
           .select('onboardingcompleted')
-          .eq('user_id', userId)
+          .eq('id', userId)
           .maybeSingle();
 
       if (response == null) {
         return false;
       }
-      return response['onboarding_completed'] == true;
+      return response['onboardingcompleted'] == true;
     } catch (error) {
       print('Error checking user data: $error');
       return false;

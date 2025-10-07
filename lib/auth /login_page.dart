@@ -15,6 +15,8 @@ class _LoginPageState extends State<LoginPage> {
   final Authservices _authservices = Authservices();
   final TextEditingController _phonenumber = TextEditingController();
   final _formKey1 = GlobalKey<FormState>();
+
+  bool pressed=false;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -86,9 +88,16 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     onPressed: ()async {
+
+
+
+
                       if(_formKey1.currentState!.validate()){
                   
-                    
+                      setState(() {
+                        
+                        pressed=true;
+                      });
 
 
 
@@ -119,7 +128,7 @@ if(value){
                       
                   
                     },
-                    child: const Text('login'),
+                    child: pressed? CircularProgressIndicator():Text('login'),
                   ),
                 ),
               ],

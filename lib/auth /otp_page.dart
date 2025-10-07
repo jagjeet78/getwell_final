@@ -25,6 +25,7 @@ class _OtpPageState extends State<OtpPage> {
 
   String _otpValue = "";
   // Initialized to an empty string to prevent errors
+  bool pressing=false;
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +106,21 @@ class _OtpPageState extends State<OtpPage> {
               ),
               onPressed: () async {
                 if (_otpValue.length == 6) {
+
+
+                 setState(() {
+                   pressing=true;
+                 });
+
+
+
+
+
+
+
+
+
+
                   final AuthResponse = await _authservices.verifyOtp(
                     widget.PhoneNumber,
                     _otpValue,
@@ -138,6 +154,9 @@ class _OtpPageState extends State<OtpPage> {
 
                    
                   } else {
+                    setState(() {
+                      pressing=false;
+                    });
                     Get.snackbar(
                       "Incorrect OTP",
                       "The code you entered is wrong. Please try again.",
@@ -154,7 +173,7 @@ class _OtpPageState extends State<OtpPage> {
                   );
                 }
               },
-              child: const Text('Verify'),
+              child:pressing?CircularProgressIndicator() :const Text('Verify'),
             ),
           ),
         ],
