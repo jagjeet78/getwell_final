@@ -170,6 +170,7 @@ keyboardType: TextInputType.name,
               ),
               ElevatedButton(
                 onPressed: () {
+                   Get.toNamed(AppRoutes.homepage);
                  
                 },
                 style: ElevatedButton.styleFrom(

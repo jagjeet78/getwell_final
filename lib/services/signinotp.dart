@@ -1,42 +1,58 @@
+import 'package:get/get.dart';
+import 'package:getwell_final/Routes/app_routes.dart';
+import 'dart:async';
+ 
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+class Authservices {
+  final SupabaseClient _supabaseClient = Supabase.instance.client;
 
-
-class Authservices{
-
-final SupabaseClient _supabaseClient =Supabase.instance.client;
-
-  Future<bool > signinwithotp(String PhoneNumber) async{
-    try{
-
-      await _supabaseClient.auth.signInWithOtp(phone: PhoneNumber);
+  // ✨ FIXED: Parameter name changed from 'PhoneNumber' to 'phoneNumber'
+  Future<bool> signinwithotp(String phoneNumber) async {
+    try {
+      await _supabaseClient.auth.signInWithOtp(phone: phoneNumber);
       return true;
+    } catch (error) {
+      print("error is ${error}");
+      Get.snackbar('Error', 'Failed to send OTP.');
+      return false;
+    }
+  }
 
-      }catch(error){
-        print("error is ${error}");
+  Future<AuthResponse?> verifyOtp(String phoneNumber, String otp) async {
+    try {
+      final response = await _supabaseClient.auth.verifyOTP(
+        phone: phoneNumber,
+        token: otp,
+        type: OtpType.sms,
+      );
+     print('✅ Whole Supabase Response:\n  Session: ${response.session?.toJson()}\n  User: ${response.user?.toJson()}');
+      return response;
+    } catch (error) {
+      print("❌ Error verifying OTP: $error");
+      Get.snackbar('Error', 'An error occurred during verification.');
+      return null;
+    }
+  }
+
+  // 👇 RESTORED: This function is now active
+  Future<bool> checkUserDataExists(String userId) async {
+    try {
+      final response = await _supabaseClient
+          .from('profiles')
+          .select('onboardingcompleted')
+          .eq('user_id', userId)
+          .maybeSingle();
+
+      if (response == null) {
         return false;
       }
-
-
+      return response['onboarding_completed'] == true;
+    } catch (error) {
+      print('Error checking user data: $error');
+      return false;
+    }
   }
-  Future<bool > verifyotp( String  phonenumber ,  String  otp) async{ 
-  
 
-  try{
-    
-  await _supabaseClient.auth.verifyOTP(
-  phone: phonenumber,
-  token: otp,
-  type: OtpType.sms,
-  );
-  return true;
  
-  }
-  catch(error){
-  print('${error}');
-  return false;
-
-  }
-
-  }
 }

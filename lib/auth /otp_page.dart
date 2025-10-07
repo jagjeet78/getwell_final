@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import 'package:getwell_final/Routes/app_routes.dart';
 import 'package:getwell_final/auth%20/otp_page_controller.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import '/services/signinotp.dart'; // Make sure this import path is correct
 
 class OtpPage extends StatefulWidget {
   final String PhoneNumber;
-
 
   const OtpPage({super.key, required this.PhoneNumber});
 
@@ -23,13 +23,11 @@ class _OtpPageState extends State<OtpPage> {
 
   final OtpPageController _otpPageController = Get.put(OtpPageController());
 
-  String _otpValue = ""; 
+  String _otpValue = "";
   // Initialized to an empty string to prevent errors
 
   @override
   Widget build(BuildContext context) {
-
-
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -46,54 +44,44 @@ class _OtpPageState extends State<OtpPage> {
             ),
           ),
 
-
-
-          Obx(
-            (){
-            if(_otpPageController.seconds.value!=0){
+          Obx(() {
+            if (_otpPageController.seconds.value != 0) {
               return Padding(
-              padding: const EdgeInsets.all(3),
-              child: Text(
-                "your otp expires in the 00:${_otpPageController.seconds.value} seconds",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-              ),
+                padding: const EdgeInsets.all(3),
+                child: Text(
+                  "your otp expires in the 00:${_otpPageController.seconds.value} seconds",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+              );
+            } else if (_otpPageController.resetotpcount < 3) {
+              return TextButton(
+                onPressed: () {
+                  _otpPageController.restartTimer();
+                  _authservices.signinwithotp(widget.PhoneNumber);
+                },
+                child: Text('Resend Otp'),
+              );
+            } else {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                _otpPageController.popout(5);
+              });
+
+              return Padding(
+                padding: EdgeInsets.all(4),
+                child: Text(
+                  "PLease Try again Later",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red,
+                  ),
+                ),
               );
             }
-            else if(_otpPageController.resetotpcount<3){
-
-              return TextButton(onPressed: 
-              (){
-               
-                _otpPageController.restartTimer();
-                _authservices.signinwithotp(widget.PhoneNumber);
-                
-                
-              }, child: Text('Resend Otp'),);
-
-
-
-            }
-            else{
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-_otpPageController.popout(5);
-});
-
-
-              return Padding(padding: EdgeInsets.all(4),
-              child: Text("PLease Try again Later",
-              textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500,
-                color: Colors.red,
-                ),
-                
-              ));
-              
-
-            }}
-            
-          ),
-SizedBox(height: screenHeight * 0.1),
+          }),
+          SizedBox(height: screenHeight * 0.1),
           OtpTextField(
             numberOfFields: 6,
             fieldWidth: 50,
@@ -117,13 +105,38 @@ SizedBox(height: screenHeight * 0.1),
               ),
               onPressed: () async {
                 if (_otpValue.length == 6) {
-                  final otpcheck = await _authservices.verifyotp(
+                  final AuthResponse = await _authservices.verifyOtp(
                     widget.PhoneNumber,
                     _otpValue,
                   );
 
-                  if (otpcheck) {
-               Get.toNamed(AppRoutes.questionpage);
+                  if (AuthResponse!=null) {
+                   if (await _authservices.checkUserDataExists(AuthResponse.user!.id)) {
+   Get.toNamed(AppRoutes.homepage);
+} else {
+   Get.toNamed(AppRoutes.questionpage);
+}
+                     
+
+
+                    
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   
                   } else {
                     Get.snackbar(
                       "Incorrect OTP",
@@ -135,7 +148,7 @@ SizedBox(height: screenHeight * 0.1),
                 } else {
                   Get.snackbar(
                     "Incomplete OTP",
-                    "Please fill all 4 digits of the OTP.",
+                    "Please fill all 6 digits of the OTP.",
                     backgroundColor: Colors.orange,
                     colorText: Colors.white,
                   );
