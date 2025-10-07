@@ -44,6 +44,7 @@ class QuestionsPage extends StatelessWidget {
                 () => ProgressBarSlider(
                   progress: questionController.progress.value.toDouble() / 2.0,
                   divisions: 3,
+                  fillColor: Color(0xFF4d91f2),
                 ),
               ),
 
@@ -65,8 +66,16 @@ class QuestionsPage extends StatelessWidget {
                     TextField(
                       onChanged: (value) =>
                           questionController.updateFullName(value),
+keyboardType: TextInputType.name,
+                          
                       decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
+            enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.grey, width: 1.0),
+    ),
+    // Border when the TextField is focused (being filled)
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.blue, width: 2.0),
+    ),
                         labelText: "Full Name",
                       ),
                     ),
@@ -161,7 +170,7 @@ class QuestionsPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  // Handle next logic
+                 
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(

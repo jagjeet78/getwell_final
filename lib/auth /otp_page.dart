@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
+import 'package:getwell_final/Routes/app_routes.dart';
 import 'package:getwell_final/auth%20/otp_page_controller.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import '/services/signinotp.dart'; // Make sure this import path is correct
@@ -122,9 +123,7 @@ SizedBox(height: screenHeight * 0.1),
                   );
 
                   if (otpcheck) {
-                    Get.offAllNamed(
-                      '/home',
-                    ); // Use offAllNamed to prevent going back
+               Get.toNamed(AppRoutes.questionpage);
                   } else {
                     Get.snackbar(
                       "Incorrect OTP",

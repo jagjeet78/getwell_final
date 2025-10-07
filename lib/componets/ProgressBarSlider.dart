@@ -12,7 +12,7 @@ class ProgressBarSlider extends StatelessWidget {
     super.key,
     required this.progress,
     required this.divisions,
-    this.fillColor = Colors.green,
+     required this.fillColor,
     this.backgroundColor = const Color(0xFFE0E0E0),
     this.height = 10,
     this.showDivisions = true,

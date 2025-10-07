@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
      getPages: Routes.pages,
-     initialRoute: AppRoutes.questionpage,
+     initialRoute: AppRoutes.login,
   
      
      // check of the commits
