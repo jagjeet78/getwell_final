@@ -172,7 +172,7 @@ class QuestionsPage extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () {
-                  Get.toNamed(AppRoutes.homepage);
+                  Get.toNamed(AppRoutes.HomeScreen);
                 },
                 child: const Text('Skip', style: TextStyle(fontSize: 16)),
               ),
@@ -184,7 +184,7 @@ class QuestionsPage extends StatelessWidget {
                     age: questionController.sliderval.value.toInt(),
                   );
 
-                  Get.toNamed(AppRoutes.homepage);
+                  Get.toNamed(AppRoutes.HomeScreen);
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(

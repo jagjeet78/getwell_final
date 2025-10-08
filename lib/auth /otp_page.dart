@@ -119,7 +119,7 @@ class _OtpPageState extends State<OtpPage> {
                     if (await _authservices.checkUserDataExists(
                       AuthResponse.user!.id,
                     )) {
-                      Get.toNamed(AppRoutes.homepage);
+                      Get.toNamed(AppRoutes.bottomnavigation);
                     } else {
                       Get.toNamed(AppRoutes.questionpage);
                     }

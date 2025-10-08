@@ -84,6 +84,7 @@ flutter:
   fonts:
     - family: getwelllogo
       fonts:
+        - asset: assets/fonts/calendar.ttf
         - asset: assets/fonts/getwelllogo.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
