@@ -1,84 +1,105 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart'; // Only if you use GetX for navigation
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
-
-  const HomePage({super.key,});
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-       
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Header Row
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Icon(Icons.location_on, color: Colors.amber),
+                  Text(
+                    "Hi User",
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  Icon(Icons.notifications),
+                ],
+              ),
 
+              const SizedBox(height: 20),
 
+              // 👇 Search Bar
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[200],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search best doctors near me',
+                    prefixIcon: Icon(Icons.search, color: Colors.grey[700]),
 
-        
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 14,
+                    ),
+                  ),
+                ),
+              ),
 
-      
-
-
-
-          
-        
-      
-
-
-        
-       body:Column(
-        children: [
-
-
-
-
-        Padding(
-          padding: EdgeInsetsGeometry.all(8),
-            child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(Icons.local_cafe_sharp),
-                Text("Hi User",style: TextStyle(fontSize: 24),),
-                Icon(Icons.map),
-            
-            
+           
+             SizedBox(height: 20,),
+              Row(children: [
+                Padding(
+                  padding: EdgeInsetsGeometry.only(
+                    left: 16,
+                   
+                  ),
+                child: Text("Common Specialties",style: GoogleFonts.manrope(
                 
+                  fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                ),),
+              )]),
+              SizedBox(height: 10,),
 
-
-
-
-
-              ],
-            ),
+              Padding(
+                padding: EdgeInsetsGeometry.only(
+                  left:12,
+                ),
+                child: SizedBox(
+                  height: 45, // must give height when inside Column
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      Container(
+                        width: 60,
+                        color: Colors.red,
+                      
+                        margin: EdgeInsets.all(8),
+                      ),
+                      Container(
+                        width: 60,
+                        color: Colors.green,
+                        margin: EdgeInsets.all(8),
+                      ),
+                      Container(
+                        width: 60,
+                        color: Colors.blue,
+                        margin: EdgeInsets.all(8),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-         
-
-
-
-         // search bar for seraching thigns and the all 
-
-
-        
-
-
-
-
-
-
-
-
-
-          
-        ],
-       ) ,
-      
-        
+        ),
       ),
     );
-    
-    
-    }}
+  }
+}
 
-
-
-  void main() => runApp(MaterialApp(home: HomePage()));
+void main() => runApp(const MaterialApp(home: HomePage()));
