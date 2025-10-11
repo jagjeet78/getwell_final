@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:getwell_go/themes/app_color.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -109,11 +111,177 @@ class HomePage extends StatelessWidget {
                 ),
               ),
 
+              SizedBox(height: 10),
+
               // this is the bottom list view and al thigns
               Padding(
                 padding: EdgeInsetsGeometry.all(4),
-                child: Row(children: [Container(height: 20,
-                width: 20, color: Colors.amberAccent)])),
+                child: Row(
+                  children: [
+                    Text(
+                      'Featured Doctors',
+                      style: GoogleFonts.manrope(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: AppColor.writecolor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              /// list of the hospitals to be the showning here and the all
+              SizedBox(height: 10),
+
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsetsGeometry.all(2),
+                  child: ListView(
+                    children: [
+                      Container(
+                        height: 162,
+                        width: 358,
+
+                        decoration: BoxDecoration(
+                          color: Color(0XFFFFFFFF),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(
+                                0.1,
+                              ), // shadow color + transparency
+                              blurRadius:
+                                  4, // how soft or blurry the shadow looks
+                              spreadRadius:
+                                  2, // how much the shadow spreads outward
+                              offset: Offset(
+                                0,
+                                10,
+                              ), // where the shadow falls (x, y)
+                            ),
+                          ],
+                        ),
+
+                        child: Column(
+                          children: [
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsGeometry.all(16),
+
+                                  child: Container(
+                                    height: 130,
+                                    width: 320,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(
+                                        color: Colors.redAccent, // border color
+                                        width: 2, // border thickness
+                                      ),
+                                    ),
+                                    child: Column(
+
+                                      children: [
+
+                                        Row(
+                                          children: [
+
+
+                                            Column(
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 21,
+                                                      width: 207,
+                                                      color: Colors.red,
+                                                    ),
+
+                                                    Container(
+                                                      height: 20,
+                                                      width: 207,
+                                                      color: Colors.blue,
+
+                                                    ),
+                                                    Container(
+                                                      height: 21,
+                                                      width: 207,
+                                                      color: Colors.blue,
+
+                                                    ),
+                                                    SizedBox(height: 16,),
+                                                    Row(
+                                                      children: [
+                                                        ElevatedButton(onPressed: (){
+                                                          
+                                                        }, child:Text('booknow')),
+                                                      ]
+                                                    ),
+                                                    
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+
+                                 SizedBox(width: 1,),
+                                            Column(
+
+                                              children: [
+                                              Container(
+                                                height: 124,
+                                                width: 107,
+                                                color: Colors.amberAccent,
+
+                                                
+                                              )
+                                              ],
+
+
+                                            ),
+
+
+                                          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                          ],
+                                        )
+                                      ],
+                              
+                           
+
+                                      
+                                    ),
+                                  ),
+                                
+                            )]
+                             
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
