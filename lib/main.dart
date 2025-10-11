@@ -33,13 +33,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       getPages: Routes.pages,
   
-      home: Obx(() {
-        if (sessionManager.isLoggedIn) {
-          return BottomNavExample(); // your main page after login
-        } else {
-          return LoginPage(); // your login page
-        }
-      }),
+     initialRoute: AppRoutes.bottomnavigation,
+      // home: Obx(() {
+      //   if (sessionManager.isLoggedIn) {
+      //     return BottomNavExample(); // your main page after login
+      //   } else {
+      //     return LoginPage(); // your login page
+      //   }
+      // }),
 
       // check of the commits
     );
