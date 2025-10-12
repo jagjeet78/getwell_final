@@ -1,8 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:getwell_go/themes/app_color.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '/componets/button.dart';
+import '../sampledata/Medicalcategory.dart';
+import '../sampledata/hospitaldata.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -74,10 +79,13 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsetsGeometry.only(left: 0),
                 child: SizedBox(
                   height: 45, // must give height when inside Column
-                  child: ListView(
+                  child: ListView.builder(
+                    itemCount: medicalCategories.length,
+
                     scrollDirection: Axis.horizontal,
-                    children: [
-                      Container(
+                    itemBuilder: (context, index) {
+                      final category = medicalCategories[index];
+                      return Container(
                         width: 130,
                         height: 32,
                         color: Color(0xFFF0F2F5),
@@ -91,22 +99,22 @@ class HomePage extends StatelessWidget {
                                 right: 5,
                               ),
                               child: Icon(
-                                Icons.face,
-                                size: 20,
+                                category.icon,
+                                size: 18,
                                 color: AppColor.writecolor,
                               ),
                             ),
                             SizedBox(width: 2),
                             Text(
-                              "Dermatology",
+                              category.name,
                               style: GoogleFonts.manrope(
                                 color: AppColor.writecolor,
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ),
               ),
@@ -119,7 +127,7 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Featured Doctors',
+                      'Featured Hospitals',
                       style: GoogleFonts.manrope(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -136,9 +144,12 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: EdgeInsetsGeometry.all(2),
-                  child: ListView(
-                    children: [
-                      Container(
+                  child: ListView.builder(
+                    itemCount: hospitalsData.length,
+                    itemBuilder: (context, index) {
+                      final hospital = hospitalsData[index];
+
+                      return Container(
                         height: 162,
                         width: 358,
 
@@ -148,15 +159,15 @@ class HomePage extends StatelessWidget {
                           boxShadow: [
                             BoxShadow(
                               color: Colors.black.withOpacity(
-                                0.1,
+                                0.2,
                               ), // shadow color + transparency
                               blurRadius:
-                                  4, // how soft or blurry the shadow looks
+                                  12, // how soft or blurry the shadow looks
                               spreadRadius:
-                                  2, // how much the shadow spreads outward
+                                  -2, // how much the shadow spreads outward
                               offset: Offset(
                                 0,
-                                10,
+                                4,
                               ), // where the shadow falls (x, y)
                             ),
                           ],
@@ -174,19 +185,11 @@ class HomePage extends StatelessWidget {
                                     width: 320,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
-                                      border: Border.all(
-                                        color: Colors.redAccent, // border color
-                                        width: 2, // border thickness
-                                      ),
                                     ),
                                     child: Column(
-
                                       children: [
-
                                         Row(
                                           children: [
-
-
                                             Column(
                                               children: [
                                                 Column(
@@ -194,91 +197,135 @@ class HomePage extends StatelessWidget {
                                                     Container(
                                                       height: 21,
                                                       width: 207,
-                                                      color: Colors.red,
+                                                      child: Column(
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                               hospital.name,
+                                                                style: GoogleFonts.manrope(
+                                                                  fontSize: 14,
+                                                                  color: AppColor
+                                                                      .lightcolor,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
 
                                                     Container(
-                                                      height: 20,
+                                                      height: 23,
                                                       width: 207,
-                                                      color: Colors.blue,
-
+                                                      child: Column(
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                'Multi-Specialty',
+                                                                style: GoogleFonts.manrope(
+                                                                  fontSize: 16,
+                                                                  color: AppColor
+                                                                      .writecolor,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
                                                     Container(
                                                       height: 21,
                                                       width: 207,
-                                                      color: Colors.blue,
 
+                                                      child: Text(
+                                                        '10 years experience',
+                                                      ),
                                                     ),
-                                                    SizedBox(height: 16,),
-                                                    Row(
-                                                      children: [
-                                                        ElevatedButton(onPressed: (){
-                                                          
-                                                        }, child:Text('booknow')),
-                                                      ]
+                                                    SizedBox(height: 20),
+                                                    Container(
+                                                      height: 44,
+                                                      width: 207,
+                                                      child: Column(
+                                                        children: [
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+
+                                                            children: [
+                                                              Button(
+                                                                height: 32,
+                                                                width: 84,
+                                                                text:
+                                                                    'Book Now',
+                                                                fontsize: 12,
+                                                                backcolor: AppColor
+                                                                    .backcolor,
+                                                                writecolor: AppColor
+                                                                    .writecolor,
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                    
                                                   ],
-                                                )
+                                                ),
                                               ],
                                             ),
 
-                                 SizedBox(width: 1,),
+                                            SizedBox(width: 1),
                                             Column(
-
                                               children: [
-                                              Container(
-                                                height: 124,
-                                                width: 107,
-                                                color: Colors.amberAccent,
-
-                                                
-                                              )
+                                                Container(
+                                                  height: 124,
+                                                  width: 107,
+                                                  child: Container(
+                                                    height: 124,
+                                                    width: 107,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                            12,
+                                                          ), // Rounded corners
+                                                      image: DecorationImage(
+                                                        image: AssetImage(
+                                                          'assets/images/hos.jpg',
+                                                        ),
+                                                        fit: BoxFit
+                                                            .cover, // Make image cover the container
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
                                               ],
-
-
                                             ),
-
-
-                                          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                           ],
-                                        )
+                                        ),
                                       ],
-                              
-                           
-
-                                      
                                     ),
                                   ),
-                                
-                            )]
-                             
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 ),
               ),
@@ -289,5 +336,8 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
+// sample data before going live class MedicalCategory {
 
 void main() => runApp(const MaterialApp(home: HomePage()));

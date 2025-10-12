@@ -10,4 +10,6 @@ class AppColor {
      static Color activeBgColor = Color(0xFFe0f2fe);
    static Color inactiveBgColor = Color(0xFFe0f2fe).withOpacity(0.7);
    static Color writecolor =Color(0xFF121417);
+   static Color lightcolor =Color(0xFF61758A);
+   static Color backcolor =Color(0xFFF0F2F5);
 }
