@@ -9,10 +9,8 @@ final List<Map<String, dynamic>> hospitalsData = [
     "contact_number": "+91 9876543210",
     "email": "info@amandeephospital.in",
     "photo_url": "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957",
-    "cover_image":
-        "https://images.unsplash.com/photo-1576765607924-bf1b44f2d1f0",
-    "description":
-        "A multispecialty hospital offering orthopedic, cardiac, and emergency care.",
+    "cover_image": "https://images.unsplash.com/photo-1576765607924-bf1b44f2d1f0",
+    "description": "A multispecialty hospital offering orthopedic, cardiac, and emergency care.",
     "rating": 4.7,
     "is_verified": true,
     "facilities": ["24x7 Emergency", "ICU", "Pharmacy", "Laboratory"],
@@ -26,8 +24,7 @@ final List<Map<String, dynamic>> hospitalsData = [
         "experience": "12 years",
         "gender": "Male",
         "photo_url": "https://randomuser.me/api/portraits/men/42.jpg",
-        "about":
-            "Specialist in bone and joint surgeries with over 1000 successful operations.",
+        "about": "Specialist in bone and joint surgeries with over 1000 successful operations.",
         "hospital_id": "h1",
         "hospital_name": "Amandeep Hospital",
         "consultation_fee": 800,
@@ -38,7 +35,7 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "4:00 PM",
         "rating": 4.8,
         "total_reviews": 120,
-        "is_active": true,
+        "is_active": true
       },
       {
         "id": "d2",
@@ -59,9 +56,9 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "5:00 PM",
         "rating": 4.9,
         "total_reviews": 98,
-        "is_active": true,
-      },
-    ],
+        "is_active": true
+      }
+    ]
   },
   {
     "id": "h2",
@@ -71,8 +68,7 @@ final List<Map<String, dynamic>> hospitalsData = [
     "contact_number": "+91 9812345678",
     "email": "support@apolloclinic.in",
     "photo_url": "https://images.unsplash.com/photo-1576765607924-bf1b44f2d1f0",
-    "cover_image":
-        "https://images.unsplash.com/photo-1606813902919-9424d1bda3c8",
+    "cover_image": "https://images.unsplash.com/photo-1606813902919-9424d1bda3c8",
     "description": "Comprehensive diagnostic and consultation clinic.",
     "rating": 4.5,
     "is_verified": true,
@@ -87,8 +83,7 @@ final List<Map<String, dynamic>> hospitalsData = [
         "experience": "15 years",
         "gender": "Male",
         "photo_url": "https://randomuser.me/api/portraits/men/48.jpg",
-        "about":
-            "Experienced family doctor specializing in lifestyle diseases.",
+        "about": "Experienced family doctor specializing in lifestyle diseases.",
         "hospital_id": "h2",
         "hospital_name": "Apollo Clinic",
         "consultation_fee": 600,
@@ -99,7 +94,7 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "2:00 PM",
         "rating": 4.7,
         "total_reviews": 200,
-        "is_active": true,
+        "is_active": true
       },
       {
         "id": "d4",
@@ -120,9 +115,9 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "4:00 PM",
         "rating": 4.8,
         "total_reviews": 135,
-        "is_active": true,
-      },
-    ],
+        "is_active": true
+      }
+    ]
   },
   {
     "id": "h3",
@@ -132,10 +127,8 @@ final List<Map<String, dynamic>> hospitalsData = [
     "contact_number": "+91 9643212345",
     "email": "contact@fortisamritsar.com",
     "photo_url": "https://images.unsplash.com/photo-1606813902973-6c9cf0b6b870",
-    "cover_image":
-        "https://images.unsplash.com/photo-1580281658629-889c96d1f9a2",
-    "description":
-        "Super specialty hospital with cardiac, oncology, and ortho care.",
+    "cover_image": "https://images.unsplash.com/photo-1580281658629-889c96d1f9a2",
+    "description": "Super specialty hospital with cardiac, oncology, and ortho care.",
     "rating": 4.8,
     "is_verified": true,
     "facilities": ["ICU", "Cardiac Center", "24x7 Ambulance"],
@@ -160,7 +153,7 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "3:00 PM",
         "rating": 4.9,
         "total_reviews": 250,
-        "is_active": true,
+        "is_active": true
       },
       {
         "id": "d6",
@@ -181,9 +174,9 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "5:00 PM",
         "rating": 4.9,
         "total_reviews": 180,
-        "is_active": true,
-      },
-    ],
+        "is_active": true
+      }
+    ]
   },
   {
     "id": "h4",
@@ -193,8 +186,7 @@ final List<Map<String, dynamic>> hospitalsData = [
     "contact_number": "+91 9988223344",
     "email": "smile@dentalstudio.in",
     "photo_url": "https://images.unsplash.com/photo-1606813902973-6c9cf0b6b870",
-    "cover_image":
-        "https://images.unsplash.com/photo-1595433707802-44e06b36e8e2",
+    "cover_image": "https://images.unsplash.com/photo-1595433707802-44e06b36e8e2",
     "description": "Dental clinic for cosmetic and general dentistry.",
     "rating": 4.9,
     "is_verified": true,
@@ -220,9 +212,9 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "6:00 PM",
         "rating": 4.8,
         "total_reviews": 90,
-        "is_active": true,
-      },
-    ],
+        "is_active": true
+      }
+    ]
   },
   {
     "id": "h5",
@@ -232,10 +224,8 @@ final List<Map<String, dynamic>> hospitalsData = [
     "contact_number": "+91 9087654321",
     "email": "admin@sukhmanihospital.in",
     "photo_url": "https://images.unsplash.com/photo-1629909613654-28c1e53e5f6b",
-    "cover_image":
-        "https://images.unsplash.com/photo-1606813902919-9424d1bda3c8",
-    "description":
-        "Affordable general hospital focusing on gynecology and pediatrics.",
+    "cover_image": "https://images.unsplash.com/photo-1606813902919-9424d1bda3c8",
+    "description": "Affordable general hospital focusing on gynecology and pediatrics.",
     "rating": 4.4,
     "is_verified": true,
     "facilities": ["Maternity Ward", "Pediatric ICU", "Pharmacy"],
@@ -260,9 +250,9 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "3:00 PM",
         "rating": 4.7,
         "total_reviews": 85,
-        "is_active": true,
-      },
-    ],
+        "is_active": true
+      }
+    ]
   },
   {
     "id": "h6",
@@ -272,10 +262,8 @@ final List<Map<String, dynamic>> hospitalsData = [
     "contact_number": "+91 9123456789",
     "email": "info.amritsar@ivyhospital.com",
     "photo_url": "https://images.unsplash.com/photo-1551192070-51358a91b427",
-    "cover_image":
-        "https://images.unsplash.com/photo-1586773860414-72476c28d447",
-    "description":
-        "A leading tertiary care hospital with advanced medical facilities.",
+    "cover_image": "https://images.unsplash.com/photo-1586773860414-72476c28d447",
+    "description": "A leading tertiary care hospital with advanced medical facilities.",
     "rating": 4.6,
     "is_verified": true,
     "facilities": ["Advanced Diagnostics", "Modular OT", "Blood Bank"],
@@ -300,7 +288,7 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "4:00 PM",
         "rating": 4.8,
         "total_reviews": 150,
-        "is_active": true,
+        "is_active": true
       },
       {
         "id": "d10",
@@ -321,9 +309,9 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "5:00 PM",
         "rating": 4.7,
         "total_reviews": 110,
-        "is_active": true,
-      },
-    ],
+        "is_active": true
+      }
+    ]
   },
   {
     "id": "h7",
@@ -333,10 +321,8 @@ final List<Map<String, dynamic>> hospitalsData = [
     "contact_number": "+91 9876501234",
     "email": "contact@daljiteye.in",
     "photo_url": "https://images.unsplash.com/photo-1594951942368-757849e70e3c",
-    "cover_image":
-        "https://images.unsplash.com/photo-1628348068343-913b8417c805",
-    "description":
-        "A premier eye care center offering a wide range of ophthalmic services.",
+    "cover_image": "https://images.unsplash.com/photo-1628348068343-913b8417c805",
+    "description": "A premier eye care center offering a wide range of ophthalmic services.",
     "rating": 4.9,
     "is_verified": true,
     "facilities": ["LASIK Surgery", "Retina Clinic", "Optical Store"],
@@ -361,9 +347,9 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "5:00 PM",
         "rating": 4.9,
         "total_reviews": 300,
-        "is_active": true,
-      },
-    ],
+        "is_active": true
+      }
+    ]
   },
   {
     "id": "h8",
@@ -374,8 +360,7 @@ final List<Map<String, dynamic>> hospitalsData = [
     "email": "info@gndhospital.gov.in",
     "photo_url": "https://images.unsplash.com/photo-1612740411033-c4b2ad35a298",
     "cover_image": "https://images.unsplash.com/photo-1562911791-c9a9415893a4",
-    "description":
-        "Government medical college and hospital providing subsidized healthcare.",
+    "description": "Government medical college and hospital providing subsidized healthcare.",
     "rating": 4.2,
     "is_verified": false,
     "facilities": ["Emergency Ward", "Surgical Units", "Radiology"],
@@ -389,8 +374,7 @@ final List<Map<String, dynamic>> hospitalsData = [
         "experience": "20 years",
         "gender": "Male",
         "photo_url": "https://randomuser.me/api/portraits/men/75.jpg",
-        "about":
-            "Head of Surgery Department, specializing in complex procedures.",
+        "about": "Head of Surgery Department, specializing in complex procedures.",
         "hospital_id": "h8",
         "hospital_name": "Guru Nanak Dev Hospital",
         "consultation_fee": 300,
@@ -401,9 +385,9 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "1:00 PM",
         "rating": 4.5,
         "total_reviews": 450,
-        "is_active": true,
-      },
-    ],
+        "is_active": true
+      }
+    ]
   },
   {
     "id": "h9",
@@ -413,10 +397,8 @@ final List<Map<String, dynamic>> hospitalsData = [
     "contact_number": "+91 9911223344",
     "email": "careandcure@physio.com",
     "photo_url": "https://images.unsplash.com/photo-1581092580433-c1c543666a30",
-    "cover_image":
-        "https://images.unsplash.com/photo-1581092921394-1a3b137c35a8",
-    "description":
-        "Specialized clinic for physical therapy and sports injury rehabilitation.",
+    "cover_image": "https://images.unsplash.com/photo-1581092921394-1a3b137c35a8",
+    "description": "Specialized clinic for physical therapy and sports injury rehabilitation.",
     "rating": 4.8,
     "is_verified": true,
     "facilities": ["Electrotherapy", "Exercise Therapy", "Sports Rehab"],
@@ -441,9 +423,9 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "7:00 PM",
         "rating": 4.9,
         "total_reviews": 75,
-        "is_active": true,
-      },
-    ],
+        "is_active": true
+      }
+    ]
   },
   {
     "id": "h10",
@@ -453,10 +435,8 @@ final List<Map<String, dynamic>> hospitalsData = [
     "contact_number": "+91 9778899001",
     "email": "littleangels@clinic.in",
     "photo_url": "https://images.unsplash.com/photo-1599045118108-bf72f37c35e4",
-    "cover_image":
-        "https://images.unsplash.com/photo-1616161479214-a5518b565259",
-    "description":
-        "A dedicated pediatric clinic for child wellness and vaccinations.",
+    "cover_image": "https://images.unsplash.com/photo-1616161479214-a5518b565259",
+    "description": "A dedicated pediatric clinic for child wellness and vaccinations.",
     "rating": 4.9,
     "is_verified": true,
     "facilities": ["Vaccination Center", "Growth Monitoring", "Nebulization"],
@@ -481,8 +461,8 @@ final List<Map<String, dynamic>> hospitalsData = [
         "available_to": "6:00 PM",
         "rating": 4.9,
         "total_reviews": 115,
-        "is_active": true,
-      },
-    ],
-  },
+        "is_active": true
+      }
+    ]
+  }
 ];

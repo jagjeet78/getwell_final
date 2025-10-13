@@ -26,6 +26,7 @@ class BottomNavExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
+        backgroundColor: Color(0xFFFFFFFF),
         body: _pages[_navigationController.currentPage.value],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _navigationController.currentPage.value,

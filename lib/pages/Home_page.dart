@@ -204,8 +204,17 @@ class HomePage extends StatelessWidget {
                                                                 MainAxisAlignment
                                                                     .start,
                                                             children: [
+
+
+
+
+                                                     
+                                                                
+                                                              
+
                                                               Text(
-                                                               hospital.name,
+                                                               hospital['name'],
+                                                               overflow: TextOverflow.ellipsis,
                                                                 style: GoogleFonts.manrope(
                                                                   fontSize: 14,
                                                                   color: AppColor
@@ -214,6 +223,9 @@ class HomePage extends StatelessWidget {
                                                                       FontWeight
                                                                           .w400,
                                                                 ),
+
+
+
                                                               ),
                                                             ],
                                                           ),
@@ -252,7 +264,7 @@ class HomePage extends StatelessWidget {
                                                       width: 207,
 
                                                       child: Text(
-                                                        '10 years experience',
+                                                        hospital['address'],
                                                       ),
                                                     ),
                                                     SizedBox(height: 20),
@@ -271,7 +283,7 @@ class HomePage extends StatelessWidget {
                                                                 height: 32,
                                                                 width: 84,
                                                                 text:
-                                                                    'Book Now',
+                                                                    'View',
                                                                 fontsize: 12,
                                                                 backcolor: AppColor
                                                                     .backcolor,
