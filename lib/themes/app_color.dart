@@ -12,4 +12,5 @@ class AppColor {
    static Color writecolor =Color(0xFF121417);
    static Color lightcolor =Color(0xFF61758A);
    static Color backcolor =Color(0xFFF0F2F5);
+   static Color tabcolor =Color(0xFFE5E8EB);
 }
