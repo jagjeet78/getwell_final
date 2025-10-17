@@ -26,9 +26,10 @@ class BottomNavExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: AppColor.activeBorderColor,
         body: _pages[_navigationController.currentPage.value],
         bottomNavigationBar: BottomNavigationBar(
+          
           currentIndex: _navigationController.currentPage.value,
           onTap: _navigationController.select,
           selectedItemColor: AppColor.activeColor,
@@ -36,8 +37,10 @@ class BottomNavExample extends StatelessWidget {
           showUnselectedLabels: true,
           items: const [
             BottomNavigationBarItem(
+              backgroundColor: Colors.white,
               icon: Icon(
                 Icons.home,
+            
                 size: 30.0,
 
                 semanticLabel: 'Home Icon',
