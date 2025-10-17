@@ -17,13 +17,14 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    print("Screen height: ${Get.height}");
+   
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
 
         appBar: AppBar(
           backgroundColor: Colors.white,
+           automaticallyImplyLeading: false,
           elevation: 0,
           centerTitle: true,
           title: Text(
@@ -36,87 +37,122 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
           iconTheme: const IconThemeData(color: Colors.black),
         ),
-        body: Padding(
-          padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            radius: 50,
-                            backgroundImage: AssetImage(
-                              'assets/images/user.png',
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsetsGeometry.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            CircleAvatar(
+                              radius: 50,
+                              backgroundImage: AssetImage(
+                                'assets/images/user.png',
+                              ),
                             ),
-                          ),
-
-                          SizedBox(height: 4),
-                          Text(
-                            'John Doe',
-                            style: GoogleFonts.manrope(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
-                              color: AppColor.writecolor,
+          
+                            SizedBox(height: 4),
+                            Text(
+                              'John Doe',
+                              style: GoogleFonts.manrope(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w600,
+                                color: AppColor.writecolor,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-
-                  Row(
-                    children: [
-                      Text(
-                        'Personal Information',
-                        style: GoogleFonts.manrope(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.writecolor,
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
-                  buildProfileRow('Name', 'John Doe'),
-                  SizedBox(height: 20),
-                        buildProfileRow('Date of Birth', 'July 15, 1985'),
-                            SizedBox(height: 20),
-                        buildProfileRow('Address', '123 Main Street, Anytown, USA'),
-                        SizedBox(height: 20,),
-                     
-                Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsGeometry.only( left: 1),
-                        child: Text(
-                          'Contact Details',
+                      ],
+                    ),
+                    SizedBox(height: 20),
+          
+                    Row(
+                      children: [
+                        Text(
+                          'Personal Information',
                           style: GoogleFonts.manrope(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                             color: AppColor.writecolor,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    buildProfileRow('Name', 'John Doe'),
+                    SizedBox(height: 20),
+                          buildProfileRow('Date of Birth', 'July 15, 1985'),
+                              SizedBox(height: 20),
+                          buildProfileRow('Address', '123 Main Street, Anytown, USA'),
+                          SizedBox(height: 20,),
+                       
+                  Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsGeometry.only( left: 1),
+                          child: Text(
+                            'Contact Details',
+                            style: GoogleFonts.manrope(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: AppColor.writecolor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
+          
+                         buildProfileRow('Address', '123 Main Street, Anytown, USA'),
+                          SizedBox(height: 20),
+          
+                         buildProfileRow('Email Address', 'amelia.chen@email.com'),
+                         
+                         
+                          SizedBox(height: 20),
+                         buildProfileRow('Phone Number', '+1 234 567 8901'),
 
-                       buildProfileRow('Address', '123 Main Street, Anytown, USA'),
-                        SizedBox(height: 20),
+  SizedBox(height: 20),
+                           Row(
+                      children: [
+                        Text(
+                          'Medical Perferences',
+                          style: GoogleFonts.manrope(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.writecolor,
+                          ),
+                        ),
+                      ],
+                    ),
+                         SizedBox(height: 20),
+                      buildProfileRow('Blood Type', 'A+'),
+                          SizedBox(height: 20),
+          
+                         buildProfileRow('Allergies', 'None'),
+                         
+                         
+                          SizedBox(height: 20),
+                         buildProfileRow('Chronic Conditions', 'None'),
+                          SizedBox(height: 20),
+                          logout('Logout'),
 
-                       buildProfileRow('Email Address', 'amelia.chen@email.com'),
 
 
-                ],
-              ),
-
-              // Center(child: ElevatedButton(onPressed:_sessionManager.logout , child: Text('logout'))),
-            ],
+          
+          
+          
+                  ],
+                ),
+          
+                // Center(child: ElevatedButton(onPressed:_sessionManager.logout , child: Text('logout'))),
+              ],
+            ),
           ),
         ),
       ),
@@ -161,7 +197,7 @@ Widget buildProfileRow(String label, String value) {
                     '  $value',
                     style: GoogleFonts.manrope(
                       fontSize: 16,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w300,
                       color: AppColor.writecolor,
                     ),
                   ),
@@ -179,6 +215,60 @@ Widget buildProfileRow(String label, String value) {
             onPressed: () {},
             icon: Icon(Icons.edit, color: AppColor.writecolor, size: 24),
           ),
+        ),
+      ],
+    ),
+  );
+}
+Widget logout(String label,) {
+  return Container(
+    width: double.infinity,
+    height: Get.height * 0.07,
+
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          width: Get.width * 0.7,
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+
+                children: [
+                  Text(
+                    '  $label',
+                    style: GoogleFonts.manrope(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: AppColor.writecolor,
+                    ),
+                  ),
+                ],
+              ),
+            
+              
+            ],
+          ),
+        ),
+
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+            width: Get.width * 0.1,
+            height: Get.height * 0.05,
+          
+            child: IconButton(
+              onPressed: () {
+                SessionManager().logout();
+              },
+              icon: Icon(Icons.logout_sharp, color: AppColor.writecolor, size: 16),
+            ),
+          ),]
         ),
       ],
     ),
