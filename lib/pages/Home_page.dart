@@ -8,7 +8,6 @@ import '/componets/button.dart';
 import '../sampledata/Medicalcategory.dart';
 import '../sampledata/hospitaldata.dart';
 
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -204,17 +203,11 @@ class HomePage extends StatelessWidget {
                                                                 MainAxisAlignment
                                                                     .start,
                                                             children: [
-
-
-
-
-                                                     
-                                                                
-                                                              
-
                                                               Text(
-                                                               hospital['name'],
-                                                               overflow: TextOverflow.ellipsis,
+                                                                hospital['name'],
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
                                                                 style: GoogleFonts.manrope(
                                                                   fontSize: 14,
                                                                   color: AppColor
@@ -223,9 +216,6 @@ class HomePage extends StatelessWidget {
                                                                       FontWeight
                                                                           .w400,
                                                                 ),
-
-
-
                                                               ),
                                                             ],
                                                           ),
@@ -282,8 +272,7 @@ class HomePage extends StatelessWidget {
                                                               Button(
                                                                 height: 32,
                                                                 width: 84,
-                                                                text:
-                                                                    'View',
+                                                                text: 'View',
                                                                 fontsize: 12,
                                                                 backcolor: AppColor
                                                                     .backcolor,
@@ -348,7 +337,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
 
 // sample data before going live class MedicalCategory {
 

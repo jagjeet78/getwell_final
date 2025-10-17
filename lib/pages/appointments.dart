@@ -73,13 +73,23 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
         children: [
           upcomingAppointmentCard('Upcoming', 'Dr. John Doe', 'City Hospital', 'Cardiology', '12 Aug, 2024', '10:00AM'),
           const SizedBox(height: 16),
-
+upcomingAppointmentCard('Upcoming', 'Dr. John Doe', 'City Hospital', 'Cardiology', '12 Aug, 2024', '10:00AM'),
         ],
       ),
     ),
 
     // Past tab
-    Container(color: Colors.white),
+     Container(
+      color: Colors.white,
+      child: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          upcomingAppointmentCard('Past', 'Dr. Jagjeet Singh', 'City Hospital', 'Cardiology', '12 Aug, 2024', '10:00AM'),
+          const SizedBox(height: 16),
+
+        ],
+      ),
+    ),
   ],
 ),
 
