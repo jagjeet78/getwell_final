@@ -19,6 +19,7 @@ class _AiChatbotScreenState extends State<AiChatbotScreen> {
         backgroundColor: Colors.white, // ✅ clean background
         appBar: AppBar(
           backgroundColor: Colors.white,
+                 automaticallyImplyLeading: false,
           elevation: 0,
           centerTitle: true,
           title: Text(

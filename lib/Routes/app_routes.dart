@@ -1,3 +1,4 @@
+import 'package:getwell_go/Modals/hospitalmodel.dart';
 import 'package:getwell_go/pages/appointments.dart';
 
 import '../auth /login_page.dart';
@@ -13,4 +14,5 @@ class AppRoutes {
   static const HomeScreen='/main/home';
   static const ProfileScreen='/main/profile';
   static const chatbotScreen='/main/chat';
+  static const HospitalModel='/hospitalmodel';
 }

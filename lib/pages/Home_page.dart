@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:getwell_go/Routes/app_routes.dart';
 import 'package:getwell_go/themes/app_color.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '/componets/button.dart';
@@ -278,6 +279,9 @@ class HomePage extends StatelessWidget {
                                                                     .backcolor,
                                                                 writecolor: AppColor
                                                                     .writecolor,
+                                                               tapfunc: (){
+                                                                Get.toNamed(AppRoutes.HospitalModel);
+                                                               },
                                                               ),
                                                             ],
                                                           ),

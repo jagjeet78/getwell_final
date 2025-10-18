@@ -9,9 +9,10 @@ class Button extends StatefulWidget {
    final double fontsize;
    final Color backcolor;
   final Color writecolor;
+ final VoidCallback tapfunc;
 
   
-  const Button({
+  Button({
     super.key,
     required this.height,
     required this.width,
@@ -19,6 +20,7 @@ class Button extends StatefulWidget {
     required this.fontsize,
     required this.backcolor,
     required this.writecolor,
+    required this.tapfunc,
 
 
   
@@ -35,9 +37,7 @@ class _ButtonState extends State<Button> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-
-      },
+    onTap: ()=> widget.tapfunc(),
 
       child: Container(
         height: widget.height,

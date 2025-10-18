@@ -22,6 +22,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
+                   automaticallyImplyLeading: false,
             title: Text(
               'My Appointments',
               style: GoogleFonts.manrope(
@@ -317,6 +318,7 @@ Widget upcomingAppointmentCard(String state, String doctorName , String Hosptial
                                                                     .backcolor,
                                                                 writecolor: AppColor
                                                                     .writecolor,
+                                                                tapfunc: (){},  
                                                               ),
                                                             ],
                                                           ),

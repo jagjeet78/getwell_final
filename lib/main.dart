@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       getPages: Routes.pages,
   
-     initialRoute: AppRoutes.bottomnavigation,
+     initialRoute: AppRoutes.HospitalModel,
       // home: Obx(() {
       //   if (sessionManager.isLoggedIn) {
       //     return BottomNavExample(); // your main page after login
