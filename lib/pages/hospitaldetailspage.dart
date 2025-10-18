@@ -11,6 +11,8 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
 
   @override
   Widget build(BuildContext context) {
+        print('Screen Height: ${Get.height}');
+    print('Screen Width: ${Get.width}');
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -28,28 +30,77 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
 
         ),
        
-        body:Column(
-    children: [
+        body:Padding(
+          padding: EdgeInsets.symmetric(horizontal:16),
+          child: Column(
+              children: [
+          
+              Container(
+                height: Get.height*0.2,
+                width: double.infinity,
+                color: Colors.white,
+                
+                child: Center(
+          child: Image.asset('assets/images/hospital.png',height: Get.height*0.20,fit: BoxFit.fill,width: Get.width*0.9,),
+                ),
+              ),
+         
+          
+          Container(
+            height: 60,
+         
+           decoration: BoxDecoration(
+          
+          
+   
 
-    Container(
-      height: Get.height*0.15,
-      width: double.infinity,
-      color: Colors.grey,
-      child: Center(
-        child: Text('Hospital Image Placeholder', style: GoogleFonts.manrope(
-          fontSize: 16,
-          color: Colors.white,
-        ),),
-      ),
-    ),
+
+            
+           ),
+
+           child: Padding(
+             padding: EdgeInsets.only(top: 20,bottom: 12),
+             child: Row(children: [
+              Expanded(
+                child: Container(
+                  
+                 child:Text('City General Hospital',style: GoogleFonts.manrope(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                                 color: AppColor.primarycolor,
+                 ),) ,
+                ),
+              ),
 
 
 
-    ],
 
 
 
 
+
+
+
+              
+             ],),
+           ),
+          ),
+             
+
+          Container()
+          
+          
+          
+          
+          
+          
+          
+              ],
+          
+          
+          
+          
+          ),
         ),
 
 
