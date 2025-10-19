@@ -15,4 +15,5 @@ class AppRoutes {
   static const ProfileScreen='/main/profile';
   static const chatbotScreen='/main/chat';
   static const HospitalModel='/hospitalmodel';
+  static const DoctordetailsPage='/doctordetails';
 }

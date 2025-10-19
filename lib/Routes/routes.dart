@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:getwell_go/pages/ai_chatbot.dart';
 import 'package:getwell_go/pages/appointments.dart';
+import 'package:getwell_go/pages/doctordetailspage.dart';
 import 'package:getwell_go/pages/hospitaldetailspage.dart';
 import '../auth /login_page.dart';
 import 'app_routes.dart';
@@ -26,6 +27,6 @@ class Routes {
     GetPage(name: AppRoutes.chatbotScreen, page:()=>AiChatbotScreen()),
     GetPage(name: AppRoutes.HomeScreen, page:()=>HomePage()),
     GetPage(name: AppRoutes.HospitalModel, page:()=>Hospitaldetailspage()),
-
+  GetPage(name: AppRoutes.DoctordetailsPage, page:()=>Doctordetailspage()),
   ];
 }

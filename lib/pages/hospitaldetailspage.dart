@@ -1,6 +1,6 @@
 import '/utils/generalexport.dart';
 import '../sampledata/Medicalcategory.dart';
-
+import '/Routes/app_routes.dart';
 class Hospitaldetailspage extends StatefulWidget {
   const Hospitaldetailspage({super.key});
 
@@ -31,15 +31,15 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
         ),
 
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16,vertical: 16),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 Container(
-                  height: Get.height * 0.2,
+                  height: Get.height * 0.23,
                   width: double.infinity,
                   color: Colors.white,
-            
+
                   child: Center(
                     child: Image.asset(
                       'assets/images/hospital.png',
@@ -49,7 +49,7 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
                     ),
                   ),
                 ),
-            
+
                 Container(
                   height: 60,
                   child: Padding(
@@ -70,12 +70,12 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
                     ),
                   ),
                 ),
-            
+
                 Container(
                   height: Get.height * 0.048,
-            
+
                   width: Get.width * 0.9,
-            
+
                   child: Padding(
                     padding: EdgeInsetsGeometry.only(top: 4, bottom: 12),
                     child: Row(
@@ -94,9 +94,9 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
                 ),
                 Container(
                   height: Get.height * 0.048,
-            
+
                   width: Get.width * 0.9,
-            
+
                   child: Padding(
                     padding: EdgeInsetsGeometry.only(top: 4, bottom: 12),
                     child: Row(
@@ -113,12 +113,12 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
                     ),
                   ),
                 ),
-            
+
                 Container(
-                  height: Get.height * 0.051,
-            
+                  height: Get.height * 0.055,
+
                   width: Get.width * 0.9,
-            
+
                   child: Padding(
                     padding: EdgeInsetsGeometry.only(top: 16, bottom: 8),
                     child: Row(
@@ -136,14 +136,14 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
                   ),
                 ),
                 SizedBox(height: 10),
-            
+
                 Padding(
                   padding: EdgeInsetsGeometry.only(left: 0),
                   child: SizedBox(
                     height: 45, // must give height when inside Column
                     child: ListView.builder(
                       itemCount: medicalCategories.length,
-            
+
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         final category = medicalCategories[index];
@@ -151,7 +151,7 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
                           width: 130,
                           height: 32,
                           color: Color(0xFFF0F2F5),
-            
+
                           margin: EdgeInsets.all(8),
                           child: Row(
                             children: [
@@ -180,12 +180,12 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
                     ),
                   ),
                 ),
-            
+
                 Container(
-                  height: Get.height * 0.051,
-            
+                  height: Get.height * 0.055,
+
                   width: Get.width * 0.9,
-            
+
                   child: Padding(
                     padding: EdgeInsetsGeometry.only(top: 16, bottom: 8),
                     child: Row(
@@ -204,19 +204,19 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
                 ),
                 SizedBox(height: 10),
 
-
                 Container(
                   height: Get.height * 0.20,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                    
-                   doctorcard(),
+                      doctorcard(),
+                      doctorcard(),
+                      doctorcard(),
+                      doctorcard(),
+                      doctorcard(),
                     ],
                   ),
-                )
-            
-               
+                ),
               ],
             ),
           ),
@@ -226,32 +226,46 @@ class _HospitaldetailspageState extends State<Hospitaldetailspage> {
   }
 }
 
-
-
-
-
-
-
-
-
-Widget doctorcard(){
+Widget doctorcard() {
   return Container(
     height: Get.height * 0.14,
     width: Get.width * 0.4,
-    color: Colors.red,
-    child: Column(
-      children: [
 
-        Container(
-          height:Get.height*0.14,
-          width: Get.width*0.40,
-          color: Colors.amber,
-        ),
+    child: GestureDetector(
 
-        Container(
-          
-        )
-      ],
+      onTap: () {
+      Get.toNamed(AppRoutes.DoctordetailsPage);
+      },
+      child: Column(
+        children: [
+          Container(
+            height: Get.height * 0.14,
+            width: Get.width * 0.40,
+            child: CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage('assets/images/user.png'),
+            ),
+          ),
+          Container(
+            height: Get.height * 0.04,
+            width: Get.width * 0.40,
+      
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Dr. Jane Smith',
+                  style: GoogleFonts.manrope(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: AppColor.primarycolor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     ),
   );
 }
