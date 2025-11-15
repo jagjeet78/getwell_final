@@ -1,6 +1,6 @@
 import '/utils/generalexport.dart';
 import '../sampledata/Medicalcategory.dart';
-
+import 'package:getwell_go/Routes/app_routes.dart';
 class Doctordetailspage extends StatefulWidget {
   const Doctordetailspage({super.key});
 
@@ -240,6 +240,7 @@ class _DoctordetailspageState extends State<Doctordetailspage> {
         width: double.infinity,
         child: ElevatedButton(
           onPressed: () {
+            Get.toNamed(AppRoutes.bookingpage); 
           
           },
           style: ElevatedButton.styleFrom(
